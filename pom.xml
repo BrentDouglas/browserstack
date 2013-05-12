@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.machinecode</groupId>
+    <artifactId>browserstack</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+
+    <scm>
+        <connection>scm:git:${git.machinecode.io}/browserstack.git</connection>
+        <developerConnection>scm:git:${git.machinecode.io}/browserstack.git</developerConnection>
+        <url>${github.machinecode.io}/browserstack.git</url>
+    </scm>
+
+    <properties>
+        <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <version.org.codehaus.jackson>1.9.12</version.org.codehaus.jackson>
+        <version.commons-codec.commons-codec>1.7</version.commons-codec.commons-codec>
+        <version.org.codehaus.jackson.jackson-core-asl>${version.org.codehaus.jackson}</version.org.codehaus.jackson.jackson-core-asl>
+        <version.org.codehaus.jackson.jackson-mapper-asl>${version.org.codehaus.jackson}</version.org.codehaus.jackson.jackson-mapper-asl>
+
+        <version.org.apache.maven.plugins.maven-checkstyle-plugin>2.9.1</version.org.apache.maven.plugins.maven-checkstyle-plugin>
+
+        <version.junit.junit>4.10</version.junit.junit>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${version.commons-codec.commons-codec}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-core-asl</artifactId>
+                <version>${version.org.codehaus.jackson.jackson-core-asl}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.codehaus.jackson</groupId>
+                <artifactId>jackson-mapper-asl</artifactId>
+                <version>${version.org.codehaus.jackson.jackson-mapper-asl}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${version.junit.junit}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>${version.org.apache.maven.plugins.maven-checkstyle-plugin}</version>
+                    <configuration>
+                        <configLocation>checkstyle.xml</configLocation>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>true</failsOnError>
+                        <useFile/>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>check-style</id>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>checkstyle</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <distributionManagement>
+        <repository>
+            <id>machinecode-repository</id>
+            <name>MachineCode Repository</name>
+            <url>http://repository.machinecode.io/nexus/content/repositories/machinecode</url>
+        </repository>
+        <snapshotRepository>
+            <id>machinecode-snapshots</id>
+            <name>MachineCode Snapshots</name>
+            <url>http://repository.machinecode.io/nexus/content/repositories/machinecode-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+</project>
